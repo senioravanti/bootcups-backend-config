@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: bootcupsbackend
+
+  liquibase:
+    change-log: 'classpath:/db/db.changelog-main.yaml'
+
+  jpa:
+    properties:
+      # Если используешь, hibernate properties, то задавай названия провертей в том регистре, в котором они заданы в документации.
+      hibernate:
+        jdbc:
+          batch_size: 32
+          fetch_size: 32
+        max_fetch_depth: 3
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+        hbm2ddl:
+          auto: validate
+
+
+logging:
+  pattern:
+    console: '%d{dd.MM.yyyy HH:mm:ss} %-5level [%t]: %class{10} %M --- %msg%n'
+
+  charset:
+    console: UTF-8
+
+  level:
+    root: INFO
+    ru.manannikov.bootcupsbackend: TRACE
+    org.springframework.boot: WARN
+
+
+app:
+  frontend-origin: '${FRONTEND_URL:http://localhost:5173}'
+  default-menu-item-image-uri: '${DEFAULT_MENU_ITEM_IMAGE_URI:menu-item-images/default.png}'
